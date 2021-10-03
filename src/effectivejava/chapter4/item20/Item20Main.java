@@ -1,9 +1,6 @@
 package effectivejava.chapter4.item20;
 
-import java.util.AbstractCollection;
 import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +15,7 @@ public class Item20Main {
 	 * 		> default키워드로 선언되면 메소드가 구현될 수 있다.
 	 * 		> 인터페이스가 변경이 되면, 인터페이스를 구현하는 모든 클래스들이 해당 메소드를 구현해야 하는 문제가 있다. 이런 문제를 해결하기 위하여 인터페이스에 메소드를 구현해 놓을 수 있도록 하였다.
 	 * 		> equals와 hashCode같은 Object의 메서드는 디폴트 메서드로 제공해서는 안 된다.
-	 * 		> 인터페이스는 인스턴스 필드를 가질 수 없고 public이 아닌 정적 멤버도 가질 수 없다(단, private 정적 메서드는 예외)
+	 * - 인터페이스는 인스턴스 필드를 가질 수 없고 public이 아닌 정적 멤버도 가질 수 없다(단, private 정적 메서드는 예외)
 	 * 
 	 * - extends는 클래스 한 개만 상속 받을 수 있다. 
 	 * 		> 추상 클래스 방식은 새로운 타입을 정의하는데 커다란 제약을 안게 되는셈이다.
@@ -28,7 +25,7 @@ public class Item20Main {
 	 * 		> 인터페이스로는 계층구조가 없는 타입 프로임워크를 만들 수 있다.
 	 * 
 	 * - 골격 구현 클래스 (템플릿 메서드 패턴)
-	 * 		> ex) AbstractList Class ( HashSet extends AbstractList )
+	 * 		> ex) AbstractSet Class ( HashSet extends AbstractSet )
 	 * 		public abstract class AbstractSet<E> extends AbstractCollection<E> implements Set<E>
 	 * 		public interface Set<E> extends Collection<E>
 	 * 		public abstract class AbstractCollection<E> implements Collection<E>

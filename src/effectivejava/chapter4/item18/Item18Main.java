@@ -3,7 +3,6 @@ package effectivejava.chapter4.item18;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import effectivejava.sample.InstrumentedHashSet_Err;
 import effectivejava.sample.InstrumentedSet;
@@ -26,8 +25,6 @@ public class Item18Main {
 		aaa.add("탁탁");
 		aaa.add("팡");
 		
-//		Set<String> seta = new HashSet<>(aaa);
-		
 		InstrumentedHashSet_Err<String> s = new InstrumentedHashSet_Err<>();
 		s.addAll(aaa);
 		
@@ -35,14 +32,14 @@ public class Item18Main {
 		System.out.println(s.getAddCount());	// 6
 		// 3 사이즈의 리스트를 더했지만 값은 6이 나온다
 		// HashSet의 addAll은 add메서드를 이용했다.
-		// s.addAll > AbstractCollection.addAll > add 사용 > add 메서드가 InstrumentedHashSet_Err 재정의 > count++ :::: allAll count++, add count++ >> count +2
+		// s.addAll > AbstractCollection.addAll > add 사용 > add 메서드가 InstrumentedHashSet_Err 재정의 > count++ :::: addAll count++, add count++ >> count +2
 		// 상위 클래스에 따라 재정의 한 하위 클래스에서 의도대로 작동하지 않을수 있다.
 		
 		// 컴포지션 : 기존 클래스가 새로운 클래스의 구성요소로 쓰임
 		InstrumentedSet<String> s2 = new InstrumentedSet<>(new HashSet<String>());
 		s2.addAll(aaa);
 		System.out.println(s2.getAddCount());	// 3
-		// s.addAll > AbstractCollection.addAll > add 사용 > add 메서드를 ForwardingSet 구현 > count++(X) :::: allAll count++ >> count +1
+		// s.addAll > AbstractCollection.addAll > add 사용 > add 메서드를 ForwardingSet 구현 > count++(X) :::: addAll count++ >> count +1
 		// 다른 Set 인스턴스를 감싸고(wrap) 있다고해서 InstrumentedSet 같은 클래스를 래퍼 클래스 라고한다.
 		// 데코레이터 패턴!!!
 		
