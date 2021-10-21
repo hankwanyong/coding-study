@@ -1,8 +1,5 @@
 package effectivejava.chapter5.item26;
 
-import java.util.AbstractList;
-import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 
 public class Item26Main {
