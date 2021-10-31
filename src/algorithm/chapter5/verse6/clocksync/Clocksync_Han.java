@@ -9,14 +9,16 @@ public class Clocksync_Han {
 	public static void main(String[] args) {
 		int[] input1 = {12, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
 		int[] input2 = {12, 9, 3, 12, 6, 6, 9, 3, 12, 9, 12, 9, 12, 12, 6, 6 };
-		int[] input3 = {12, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
+//		int[] input3 = {12, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
 		
-		System.out.println(SwitchCaseUtil.getClockIndex(1));
+//		System.out.println(SwitchCaseUtil.getClockIndex(1));
 		
-		SwitchCaseUtil.pressSwitch(input1, 1);
+//		SwitchCaseUtil.pressSwitch(input1, 1);
 		
-		System.out.println(chkEqClockArr(input1, input2));
-		System.out.println(chkEqClockArr(input1, input3));
+//		System.out.println(chkEqClockArr(input1, input2));
+//		System.out.println(chkEqClockArr(input1, input3));
+		
+		solution(input1);
 		
 	}
 	
@@ -56,6 +58,15 @@ public class Clocksync_Han {
 				}
 			}
 		}
+		
+		public static void inversePressSwitch(int[] clocks, int si) {
+			init();
+			if(si <= switch_case.size()-1) {
+				for(Integer i : switch_case.get(si)) {
+					clocks[i] = (clocks[i] + 9) % 12; 
+				}
+			}
+		}
 	}
 	
 	/**
@@ -69,19 +80,63 @@ public class Clocksync_Han {
 		if(orginArr.length != chgArr.length) return false;
 		
 		for(int i=0; i<orginArr.length; i++) {
-			if(orginArr[i] != chgArr[i])return false;
+			if(orginArr[i]% 12 != chgArr[i]% 12)return false;
 			
 		}
 		return true;
 	}
 	
-	public static int repeatSolution(int[] originArr, int[] chgArr) {
+	public static int[] repeatSolution(int[] originArr, int[] chgArr) {
+		int[] ret = null;
+		int firstStart = 0;
 		
+		for(int i=0; i<chgArr.length; i++ ) {
+			if(chgArr[i]%12 != 0) {
+				firstStart = i;
+			}
+		}
 		
+		if(firstStart == 0) {
+			// 모든 시계가 12시
+//			return 1;
+		}else {
+			List<Integer> clockIndexList = SwitchCaseUtil.getClockIndex(firstStart);
+			int size = clockIndexList.size();
+			ret = new int[size];
+			
+			for(int i=0; i<size; i++) {
+				int it = clockIndexList.get(i);
+				SwitchCaseUtil.pressSwitch(chgArr, it);
+				ret[i] ++;
+				
+				if(chkEqClockArr(originArr, chgArr)) {
+//					return -1;
+				}
+				
+				ret = repeatSolution(originArr, chgArr);
+				if(ret == null) return null;
+					
+				SwitchCaseUtil.inversePressSwitch(chgArr, it);
+			}
+			
+		}
 		
+		return ret;
 	}
 	
 	public static int solution(int[] clocks) {
+		
+		int len = clocks.length;
+		if(len == 0) return -1;
+		
+		int[] chgArr = new int[len];
+		for(int i=0; i<len; i++) {
+			chgArr[i] = clocks[i];
+		}
+		
+		
+		System.out.println(repeatSolution(clocks, chgArr));
+		
 		return 0;
 	}
 	
