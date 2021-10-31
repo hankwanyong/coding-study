@@ -5,7 +5,7 @@ import java.util.EmptyStackException;
 
 public class Item29Main {
 	/*
-	 * 이왕이면 제네릭 타입으로 만들라
+	 *  이왕이면 제네릭 타입으로 만들라
 	 * 
 	 *  1. 일반 클래스를 제네릭 클랙스로 만드는 첫 단계는 클래스 선언에 타입에 매개변수를 추가하는 것이다.
 	 *                  
@@ -19,7 +19,7 @@ public class Item29Main {
 		//배열을 사용한 코드를 제네릭으로 만드는 방법 1
 		@SuppressWarnings("unchecked")
 		public Stack() {
-			// elements = new E[DEFAULT_INITIAL_CAPACITY];
+			//elements = new E[DEFAULT_INITIAL_CAPACITY];
 			elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];
 			
 		}
@@ -33,8 +33,8 @@ public class Item29Main {
 			if(size == 0) 
 				throw new EmptyStackException();
 			//배열을 사용한 코드를 제네릭으로 만드는 방법2
-			// E result = elements[--size];
-			@SuppressWarnings("unchecked") E result =(E) elements[--size];
+		//	E result = elements[--size];
+			@SuppressWarnings("unchecked") E result = (E) elements[--size];
 			
 			elements[size] = null;
 			return result;
