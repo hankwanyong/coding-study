@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Item31Main {
 	/*
-	 * 한정적 와일드카드를 사용해 API 유연성을 높이라           
+	 * 한정적 와일드카드를 사용해 API 유연성을 높이라        ?   
 	 */
 	
 	//pushAll 메서드
@@ -98,13 +98,13 @@ public class Item31Main {
 	// public static <E> Set<E> union(Set<E>, Set<E> s2)
 	// -> public static <E> Set<E> union(Set<? extends E> s1, Set<? extends E> s2) 
 	
-	//자바 7까지는 명시적 타입 인수를 사용해야한다.
+	// 자바 7까지는 명시적 타입 인수를 사용해야한다.
 	// Set<Number> numbers = Union.<Number>union(integer, doubles);
 	
 	// 메서드 선언데 타입 매개변수가 한 번만 나오면 와일드카드로 대체하라.
 	public static <E> void swap1(List<E> list, int i , int j){};
 	public static void swap2(List<?> list, int i, int j) {
-		//	list.set(i, list.set(j, list.get(i)));
+		//list.set(i, list.set(j, list.get(i)));
 		swapHelper(list, i, j);
 	};
 	//swap2 : List<?> 에는 null 이외에는 어떤 값도 넣을 수 없다.

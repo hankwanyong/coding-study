@@ -8,7 +8,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Item28Main {
 	/*
-	 *배열보다는 리스트를 사용하라
+	 * 배열보다는 리스트를 사용하라
 	 * 배열 : 공변, 런타임 안정, 컴파일 불안정
 	 * 제네릭 : 불공변, 런타임 불안정, 컴파일 안정
 	 *                  
@@ -36,7 +36,7 @@ public class Item28Main {
 		/* 배열은 제네릭 타입, 매개변수화 타입, 타입 매개변수로 사용할 수 없다.
 		 * new List<E>[], new List<String>[], new E[] 컴파일 오류
 		 * 
-		 * 런타임에 ClassCast Exception이 발생하는 일을 막는 제네릭 타입 시스템의 취지에 어긋난다.
+		 * 런타임에 ClassCastException이 발생하는 일을 막는 제네릭 타입 시스템의 취지에 어긋난다.
 		 */
 		
 	}
@@ -52,8 +52,7 @@ public class Item28Main {
 		public T choose() {
 			Random rnd = ThreadLocalRandom.current();
 			return choiceList.get(rnd.nextInt(choiceList.size()));
-		}
-		
+		}		
 	}
 
 }

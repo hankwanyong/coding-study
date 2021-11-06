@@ -6,8 +6,8 @@ import java.util.Objects;
 
 public class Item33Main {
 	/*
-	 * 타입 안전 이종 컨테이너를 고려하라      
-	 *  타입과 키의타입 2가지를 보장하는 설계를 타입 안전 이종 컨테인어 패턴
+	 *  타입 안전 이종 컨테이너를 고려하라      
+	 *  타입과 키의타입 2가지를 보장하는 설계를 타입 안전 이종 컨테이너 패턴
 	 */
 	
 	//타입 안전 이종 컨테이너 패턴
@@ -56,7 +56,7 @@ public class Item33Main {
 	}
 	
 	//한정적 타입 토큰 사용
-	// Class<? extends Annotation> 컴파일 경고 
+	//  Class<? extends Annotation> 컴파일 경고 
 	// -> asSubclass : 호출된 인스턴스 자신의 Class 객체를 인수가 명시한 클래스로 형변환한다.(이 클래스가 인수로 명시한 클래스의 하위 클래스라는 뜻)
 
    /*
