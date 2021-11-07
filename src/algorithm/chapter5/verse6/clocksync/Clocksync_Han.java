@@ -2,34 +2,32 @@ package algorithm.chapter5.verse6.clocksync;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Clocksync_Han {
 
 	static List<Integer> answerList = new ArrayList<>();
+	static Set<String> before = new HashSet<>();
 	
 	public static void main(String[] args) {
 		int[] input1 = {12, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
 		int[] input2 = {12, 9, 3, 12, 6, 6, 9, 3, 12, 9, 12, 9, 12, 12, 6, 6 };
 		
-		solution(input1);
-//		solution(input2);
+//		solution(input1);
+		solution(input2);
 		
-//		System.out.println(logClocks(input2));
-//		ClockSwitch.pushSwitch(input2, 0);
-//		ClockSwitch.pushSwitch(input2, 1);
-//		ClockSwitch.pushSwitch(input2, 5);
-//		ClockSwitch.pushSwitch(input2, 6);
-//		ClockSwitch.pushSwitch(input2, 5);
-//		ClockSwitch.pushSwitch(input2, 6);
-//		ClockSwitch.pushSwitch(input2, 6);
-//		ClockSwitch.pushSwitch(input2, 3);
-//		ClockSwitch.pushSwitch(input2, 7);
-//
-//		System.out.println(logClocks(input2));
-		
-		
+	}
+	
+	public static String convertClocks(int[] clocks) {
+		StringBuilder sb = new StringBuilder();
+		for(int c : clocks) {
+			sb.append(c + "");
+		}
+		return sb.toString();
 	}
 	
 	enum ClockSwitch {
@@ -90,6 +88,8 @@ public class Clocksync_Han {
 					}
 				}
 				
+				before.add(convertClocks(clocks));
+				
 				if(null != clockSwitch) {
 					for(Integer i : clockSwitch.getSwitchclocks()) {
 						int a = (clocks[i] + 3) % 12;
@@ -123,7 +123,6 @@ public class Clocksync_Han {
 					}
 					
 					clockSwitch.pushCnt --;
-//					System.out.println("inversePushSwitch >> clockSwitch.pushCnt : " + clockSwitch.pushCnt);
 				}
 			}
 		}
@@ -147,30 +146,18 @@ public class Clocksync_Han {
 		}
 	}
 	
-	public static class SwitchNode {
-		int switchIndex;
-		List<SwitchNode> lowerRank;
-		
-		public SwitchNode() {}
-		
-		public void setSwitchIndex(int switchIndex) {
-			this.switchIndex = switchIndex;
-		}
-		
-		public void addNode(SwitchNode node) {
-			if(null == lowerRank) {
-				lowerRank = new ArrayList<>();
-			}
-			
-			this.lowerRank.add(node);
-		}
-	}
 	
 	public static void repeatSolution(int[] clocks) {
 		int firstStart = -1;
 		
-		if(ClockSwitch.getSumPushCnt() > 3) {
-			return ;
+		for(ClockSwitch cs : ClockSwitch.getList()) {
+			if(cs.getPushCnt() > 3) {
+				return;
+			}
+		}
+		
+		if(before.contains(convertClocks(clocks))) {
+			return;
 		}
 
 		for(int i=0; i<clocks.length; i++ ) {
@@ -190,9 +177,6 @@ public class Clocksync_Han {
 			
 			for(int i=0; i<size; i++) {
 				int it = clockIndexList.get(i);
-				
-				System.out.println(logClocks(clocks) + " 스위치 번호 : " + it);
-				
 				ClockSwitch.pushSwitch(clocks, it);
 				repeatSolution(clocks);
 				ClockSwitch.inversePushSwitch(clocks, it);
@@ -201,12 +185,16 @@ public class Clocksync_Han {
 		}
 	}
 	
-	public static int solution(int[] clocks) {
+	public static void solution(int[] clocks) {
 		
 		repeatSolution(clocks);
-		System.out.println(answerList);
 		
-		return 0;
+		if(answerList.size() > 0) {
+			Collections.sort(answerList);
+			System.out.println("답 : "+answerList.get(0));
+		}else {
+			System.out.println("답 : -1");
+		}
 	}
 	
 	public static String logClocks(int[] clocks) {
