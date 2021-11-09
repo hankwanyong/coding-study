@@ -1,4 +1,4 @@
-package algorithm.chapter5.verse6.clocksync;
+package algorithm.chapter3.verse6.clocksync;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package algorithm.chapter5.verse6.clocksync;
+package algorithm.chapter3.verse6.clocksync;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -17,16 +17,18 @@ public class Clocksync_Han {
 		int[] input1 = {12, 6, 6, 6, 6, 6, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12 };
 		int[] input2 = {12, 9, 3, 12, 6, 6, 9, 3, 12, 9, 12, 9, 12, 12, 6, 6 };
 		
-//		solution(input1);
-		solution(input2);
+		solution(input1);
+//		solution(input2);
 		
 	}
 	
-	public static String convertClocks(int[] clocks) {
+	public static String convertClocks(int[] clocks, int index) {
 		StringBuilder sb = new StringBuilder();
 		for(int c : clocks) {
 			sb.append(c + "");
 		}
+		
+		sb.append(index + "");
 		return sb.toString();
 	}
 	
@@ -88,7 +90,7 @@ public class Clocksync_Han {
 					}
 				}
 				
-				before.add(convertClocks(clocks));
+				before.add(convertClocks(clocks, si));
 				
 				if(null != clockSwitch) {
 					for(Integer i : clockSwitch.getSwitchclocks()) {
@@ -156,10 +158,6 @@ public class Clocksync_Han {
 			}
 		}
 		
-		if(before.contains(convertClocks(clocks))) {
-			return;
-		}
-
 		for(int i=0; i<clocks.length; i++ ) {
 			if(clocks[i]%12 != 0) {
 				firstStart = i;
@@ -172,6 +170,11 @@ public class Clocksync_Han {
 			answerList.add(ClockSwitch.getSumPushCnt());
 			return ;
 		}else {
+			
+			if(before.contains(convertClocks(clocks, firstStart))) {
+				return;
+			}
+			
 			List<Integer> clockIndexList = ClockSwitch.getClockIndexList(firstStart);
 			int size = clockIndexList.size();
 			
@@ -191,6 +194,7 @@ public class Clocksync_Han {
 		
 		if(answerList.size() > 0) {
 			Collections.sort(answerList);
+			System.out.println("answerList : " + answerList.toString());
 			System.out.println("답 : "+answerList.get(0));
 		}else {
 			System.out.println("답 : -1");
