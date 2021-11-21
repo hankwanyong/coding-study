@@ -15,8 +15,6 @@ public class Item49Main {
 	
 	
 	public static BigInteger mod(BigInteger x) {
-		//2.예제
-		Objects.requireNonNull(x, "requireNonNull");
 		
 		//1.
 		if(x.signum() <= 0) { //x.signum() -> throw nullPointException
@@ -71,7 +69,7 @@ public class Item49Main {
 	 	- 유유성 검사 비용이 높다.
 	 	- 실용적이지 않을 때.
 	 	- 계산과정에서 암묵적으로 검사가 수행될 때.
-	 	
+	 	예)
 	 	Collections.sort(List) 
 	 	- 리스트 안의 객체는 모두 상호 비교 가능.
 	 	- 만약 비교불가능 타입 객체가 들어온다면 ClassCastException을 던진다.
