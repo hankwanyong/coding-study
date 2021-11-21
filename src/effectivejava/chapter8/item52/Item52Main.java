@@ -24,7 +24,7 @@ public class Item52Main {
 
 	public static void main(String[] args) {
 		
-		//예) Overloading
+		//예) 1.Overloading
 		Collection<?>[] collections = {
 				new HashSet<String>()
 				, new ArrayList<BigInteger>()
@@ -35,12 +35,11 @@ public class Item52Main {
 			System.out.println(CollectionClassifier.classify(c));
 			
 			//오버로딩 된 세 classify 중 어느 메서드를 호출할지 컴파일타임에 정해지기 때문에 
-			// for문안의 c는 항상 Collection<?> 타입이다.
-			
-			// 재정의한 매서드는 동적으로 선택되고(예-Collection) , 다중정의한 메서드는 정적으로 선택된다.(예-Wine)
+			// for문안의 c는 항상 Collection<?> 타입이다.		
 		}
 		System.out.println("=======================================");
 		
+		// 2. 재정의한 매서드는 동적으로 선택되고, 다중정의한 메서드는 정적으로 선택된다.
 		//예) Wine Overriding
 		List<Wine> wineList = List.of(new Wine(), new SparklingWine(), new Champagne());
 		
@@ -49,7 +48,8 @@ public class Item52Main {
 		}
 		System.out.println("=======================================");
 		
-		//CollectionClassifier 해결책
+		
+		//3. CollectionClassifier 해결책
 		// 모든 classify 메서드를 하나로 합친 후 instanceof로 명시적 검사를 한다.
 		
 		for(Collection<?> c : collections) {
@@ -57,7 +57,7 @@ public class Item52Main {
 		}
 		System.out.println("=======================================");
 		
-		/* 다중정의가 혼도을 일으키는 상황을 피해야 한다.
+		/* 다중정의가 혼돈을 일으키는 상황을 피해야 한다.
 		 * 
 		 * 정확히 어떻게 사용했을 때 다중정의가 혼란을 주느냐에 대해서는 논란의 여지가 있다.
 		 * 안전하고 보수적으로 가려면 매개변수 수가 같은 다중정의는 만들지 말자.
@@ -66,7 +66,7 @@ public class Item52Main {
 		 * 
 		 */
 		
-		//List.remove 문제
+		//4. List.remove 문제
 		
 		Set<Integer> set = new TreeSet<>();
 		List<Integer> list = new ArrayList<>();
@@ -109,6 +109,7 @@ public class Item52Main {
 		ExecutorService exec = Executors.newCachedThreadPool();
 		//exec.submit(System.out::println);  //submit 와 println 다중정의 충돌.현상
 		
+		// 자바 라이브러리도 실패한 클래스가 있다.
 		// String클래스의 valueOf
 		char[] a = {'a', 'b', 'c'};
 		Object b = (Object) a;
