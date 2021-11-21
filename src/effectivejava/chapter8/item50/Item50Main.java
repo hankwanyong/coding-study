@@ -24,13 +24,15 @@ public class Item50Main {
 		System.out.println("======= 두 번째 ============");
 		System.out.println(p.toString());
 		
-		// 외부 공격으로 Period 인스턴스의 내부를 보호하려면 생성자에서 받은 가변 매개ㅐ변수 각각을 방어적으로 복사해야 한다.
+		// 외부 공격으로 Period 인스턴스의 내부를 보호하려면 생성자에서 받은 가변 매개변수 각각을 방어적으로 복사해야 한다.
 		// 멀티스레딩 환경이라면 원본 객체의 유효성을 검사한 후 복사본을 만드는 그 찰나의 취약한 순간에 다른 스레드가 원본 객체를 수정하는 공격
 		// 검사시점/사용시점(time-of-check/thie-of-use) 공격 혹은 TOCTOU 공격이라 한다.
 		
 		//두 번째 공격
 		p.end().setYear(77);
 		// -> 가변 필드의 방어적 복사본을 반환해라.
+		System.out.println("======= 두 번째 공격 ============");
+		System.out.println(p.toString());
 		
 	}
 	
