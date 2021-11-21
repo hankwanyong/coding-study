@@ -15,8 +15,10 @@ public class Item49Main {
 	
 	
 	public static BigInteger mod(BigInteger x) {
+		//2.예제
 		Objects.requireNonNull(x, "requireNonNull");
 		
+		//1.
 		if(x.signum() <= 0) { //x.signum() -> throw nullPointException
 			throw new IllegalArgumentException("파라미터는 양수이어야 합니다. => " + x);
 		}
@@ -24,13 +26,13 @@ public class Item49Main {
 		return x;
 	}
 	
-	//자바7에 추가된 java.util.Objects.requireNonNull 메서드는 유연하고 사용하기 편하다.
+	//2.자바7에 추가된 java.util.Objects.requireNonNull 메서드는 유연하고 사용하기 편하다.
 	public static BigInteger mod2(BigInteger x) {
 		Objects.requireNonNull(x, "requireNonNull");
 		return x;
 	}
 	
-	// public이 아닌 메서드라면 단언문(assert)을 사용해 매개변수 유효성을 검증할 수 있다.
+	//3.public이 아닌 메서드라면 단언문(assert)을 사용해 매개변수 유효성을 검증할 수 있다.
 	private static void sort (long a[], int offset, int length) {
 		//AssertionError 
 		assert a != null;
@@ -41,15 +43,24 @@ public class Item49Main {
 	public static void main(String[] args) {
 		
 		BigInteger a = null;
-		try {
+		try {		
 			
-			mod(a);
+			mod(a);	
+			
+		} catch (IllegalArgumentException e) {
+			System.out.println("mode: " + e.getMessage());
+		} catch (NullPointerException e) {
+			System.out.println("mode: " + e.getMessage());
+		}
+		
+		try {	
+		
 			mod2(a);
 			
 		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
+			System.out.println("mode2: " + e.getMessage());
 		} catch (NullPointerException e) {
-			System.out.println(e.getMessage());
+			System.out.println("mode2: " + e.getMessage());
 		}
 		
 	}
