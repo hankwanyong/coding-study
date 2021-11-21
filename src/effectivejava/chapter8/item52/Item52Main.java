@@ -116,6 +116,13 @@ public class Item52Main {
 		System.out.println("String.valueOf(char[]) : " + String.valueOf(a));
 		System.out.println("String.valueOf(Object) : " + String.valueOf(b));
 		
+		/*핵심저일
+		 *  일반적으로 매개변수 수가 같을 때는 다중정의를 피하는게 좋다.
+		 *  특히 생성자라면 이 조언을 따르기가 불가능할 수 있다.
+		 *  그럴 때는 헷갈릴 만한 매개변수는 형변환하여 정확한 다중정의 메서드가 선택되도록 해야 한다.
+		 *  이것이 불가능하면, 기존 클래스를 수정해 새로운 인터페이스를 구현해야 할 때는 같은 객체를 입력받는
+		 *  다중정의 메서드들이 모두 동일하게 동작하도록 만들어야 한다.
+		 */
 		
 	}   
 }
