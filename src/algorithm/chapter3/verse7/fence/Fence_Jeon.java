@@ -1,10 +1,5 @@
 package algorithm.chapter3.verse7.fence;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class Fence_Jeon {
 	
 	static int MAX_HEIGHT = 10001;
@@ -25,27 +20,23 @@ public class Fence_Jeon {
 	public static int algo(int[] ex, int maxH) {
 		
 		int result = 0;
-		int findMaxH = 0;
 		int index = 0;
 		int left = 0;
 		int right = 0;
 		
 		for(int i =0; i< ex.length; i++) {
-			//if(ex[i] > findMaxH &&  ex[i] < maxH) {
-				maxH = ex[i];
-				index = i;				
-				
-				left = leftCheck(maxH, index-1, ex);
-				right = rightCheck(maxH, index+1, ex);
-				
-				if(result < (maxH+left+right)) {
-					result = maxH + left + right;
-				}
-				
-		//	}
+	
+			maxH = ex[i];
+			index = i;				
+			
+			left = leftCheck(maxH, index-1, ex);
+			right = rightCheck(maxH, index+1, ex);
+			
+			if(result < (maxH+left+right)) {
+				result = maxH + left + right;
+			}
+
 		}
-		
-		
 		
 		return result;
 		
