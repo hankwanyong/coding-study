@@ -18,7 +18,6 @@ public class Item52Main {
 	/* 
 	 *  아이템52
 	 *  다중정의는 신중히 사용하라
-	 *  
 	 */
 	
 
