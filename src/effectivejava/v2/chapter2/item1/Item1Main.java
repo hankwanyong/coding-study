@@ -27,5 +27,5 @@ package effectivejava.v2.chapter2.item1;
  * 
  */
 public class Item1Main {
-
+    // zzzzz commit test
 }
