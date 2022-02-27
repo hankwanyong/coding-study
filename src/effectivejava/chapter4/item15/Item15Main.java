@@ -22,10 +22,41 @@ public class Item15Main {
 	 *  	> public static final 배열은 제공하면 보안 허점!
 	 *  	> private로 설정 후 제공자를 사용하자
 	 *  		1. 불변제공자 or clone 인스턴스
+	 *  
+	 *  #리스코프 치환 원칙
+	 *  - 책 : 상위 클래스의 메서드를 재정의할 때는 그 접근 수준을 상위 클래스에서보다 좁게 설정할 수 없다. 
+	 *  - B가 A의 자식 타입이면 부모 타입인 A객체는 자식 타입인 B로 치환해도 문제가 없어야 한다.
+	 *    -> 자식 클래스는 부모 클래스가 따르던 제약 사항을 자식도 따라야한다.
+	 *  
 	 */
 	
+	public static class parents {
+		public static final String[] arr = {"a", "b"};
+		
+		public String getArrayOfIndex(int index) {
+			return arr[index];
+		}
+		
+		public String getItem() {
+			return "a";
+		}
+	}
+//	
+//	public static class child extends parents {
+//		@Override
+//		protected String getItem() {
+//			return "b";
+//		}
+//	}
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// public static final 배열의 위험성
+		parents a = new parents();
+		
+		a.arr[0] = "1";
+		
+		System.out.println(a.getArrayOfIndex(0));
+		
 
 	}
 

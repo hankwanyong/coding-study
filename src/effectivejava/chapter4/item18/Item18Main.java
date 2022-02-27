@@ -36,6 +36,12 @@ public class Item18Main {
 		// 상위 클래스에 따라 재정의 한 하위 클래스에서 의도대로 작동하지 않을수 있다.
 		
 		// 컴포지션 : 기존 클래스가 새로운 클래스의 구성요소로 쓰임
+		// # 일반적인 상속 관계의 경우 상위 클래스 수정에 따라 하위 클래스에 직접적으로 영향이 간다. 
+		//   다수의 하위 클래스도 대응 수정을 해줘야하고, 유지보수 측면에서 까다롭다.
+		// # 이를 회피하기 위한 설계를 컴포지션이라 한다.
+		// # 아래 컴포지션의 핵심은   InstrumentedSet은 Set의 하위 클래스로 사용이 되어야하고, 전달클래스를 이용해 Set과 InstrumentedSet의 의존성 낮추고 
+		//   유연함을 챙기는 것이다.
+		//    Set -> ForwardingSet (전달클래스) -> InstrumentedSet 구조
 		InstrumentedSet<String> s2 = new InstrumentedSet<>(new HashSet<String>());
 		s2.addAll(aaa);
 		System.out.println(s2.getAddCount());	// 3
