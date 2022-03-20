@@ -36,7 +36,8 @@ public class Graduation_Han {
         };
 
 
-        System.out.println("test1 : "+test(ex1, subjectArr1, semesterArr1));
+        System.out.println("test1 : " + chgRet(test(ex1, subjectArr1, semesterArr1)));
+        System.out.println("test2 : " + chgRet(test(ex2, subjectArr2, semesterArr2)));
 
     }
 
@@ -65,6 +66,8 @@ public class Graduation_Han {
         for(int[] semester : semesterArr) {
             retInt++;
 
+            List<Integer> psbSub = new ArrayList<>();
+
             for(int i=0; i<subjectArr.length; i++) {
                 int subInt = i;     // 과목번호
                 int[] subject = subjectArr[subInt];     // 과목의 먼저 들어야할 과목 정보
@@ -72,21 +75,28 @@ public class Graduation_Han {
                     // 수강하지 않은 과목 + 이번 학기에 개강한 과목
 
                     if(subject.length == 0) {
-                        takenList.add(subInt);
+                        // 수강조건이 없는 과목 >> 수강
+                        psbSub.add(subInt);
                     }else {
-                        for(int j=0; j<subject.length; j++) {
-                            if(takenList.contains(i)) {
-                                takenList.add(subInt);
+                        boolean psb = true;
+                        for (int k : subject) {
+                            if (!takenList.contains(k)) {
+                                psb = false;
+                                break;
                             }
+                        }
+                        if(psb) {
+                            psbSub.add(subInt);
                         }
                     }
 
                 }
 
-                System.out.println("taken_sub >> \n" + takenList);
-
-
             }
+
+            takenList.addAll(psbSub);
+
+//            System.out.println("taken_sub >> \n" + takenList);
 
             if(takenList.size() == cp_subject) {
                 ret = retInt;
@@ -100,5 +110,9 @@ public class Graduation_Han {
 
 
         return ret;
+    }
+
+    static String chgRet (int a) {
+        return a == 0 ? "IMPOSSIBLE" : a+"";
     }
 }
