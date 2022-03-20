@@ -19,7 +19,13 @@ public class Name implements Serializable{
 	 * @serial
 	 */
 	private final String middleName;
-	
+
+	public Name(String lastName, String firstName, String middleName) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.middleName = middleName;
+	}
+
 	//기본 직렬화 형태가 적합하다고 결정했더라도 불변식 보장과 보안을 위해 readObject 메서드를 제공해야 할 때가 많다.
 	//해당 클래스에서는 readObject 메서드가 lastName과 firstName 필드가 null이 아님을 보장해야한다.
 	

@@ -1,5 +1,7 @@
 package effectivejava.chapter5.item26;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Item26Main {
@@ -65,4 +67,41 @@ public class Item26Main {
 	 *  Set<Object> Set<?> 안전
 	 *  Set 안전하지 않음
 	 */
+
+
+	/**
+	 * Object 와 와일드 카드 차이
+	 */
+
+	public void test(List<Object> list){
+		for(Object o : list){
+			System.out.println(o);
+		}
+	}
+
+	public void test2(List<?> list){
+		for(Object o : list){
+			System.out.println(o);
+		}
+	}
+
+	public void sample() {
+		List<Object> listO = new ArrayList<>();
+		List<String> listS = new ArrayList<>();
+		List<?> lista = new ArrayList<>();
+
+
+//		test(listS);		// 컴파일 에러
+		test2(listS);		// 컴파일 성공
+
+		/*
+		String은 Object의 하위 타입이지만
+		List<String>은 List<Object>의 하위 타입이 아니다.
+		그렇다고 와일드카드 제네릭이 List<String>의 상위 타입은 아니다.
+		어떤 타입이든 사용가능 하도록 만든것이 와일드카드.
+		 */
+
+	}
+
+
 }

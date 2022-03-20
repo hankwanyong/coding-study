@@ -8,7 +8,7 @@ public class PhoneNumberClone implements Cloneable{
 		this.prefix = rangeCheck(prefix,999,"프리픽스");
 		this.lineNum = rangeCheck(lineNum,9999,"가입자 번호");
 	}
-	
+
 	private static short rangeCheck(int val, int max, String arg) {
 		if(val < 0 || val > max) {
 			throw new IllegalArgumentException(arg +" : "+val);
@@ -38,14 +38,14 @@ public class PhoneNumberClone implements Cloneable{
 			throw new AssertionError(); //일어날 수 없는 일.
 		}
 	}
-	
-	
+
+
 
 	@Override
 	public String toString() {
 		return "PhoneNumberClone [areaCode=" + areaCode + ", prefix=" + prefix + ", lineNum=" + lineNum + "]";
 	}
 
-	
-	
+
+
 }
