@@ -1,4 +1,4 @@
-package effectivejava.chapter3.item13;
+package effectivejava.v2.chapter3.item13;
 
 import java.util.Arrays;
 import java.util.EmptyStackException;

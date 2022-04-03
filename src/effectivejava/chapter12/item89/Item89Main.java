@@ -12,7 +12,7 @@ public class Item89Main {
 	 *  생성자는 private 접근 지정자로 선언하여 외부로부터 감추고 INSTANCE를 초기화할 때 딱 한 번만 호출된다.
 	 */
 	public class Elvis {
-	    public static final Elvis INSTANCE = new Elvis();
+	    //public static final Elvis INSTANCE = new Elvis();
 	    private Elvis() {}
 	    
 	    public void leaveTheBuiling(){}
@@ -25,10 +25,10 @@ public class Item89Main {
 	 * 이때 readResolve 메서드를 이용하면 readObject 메서드가 만든 인스턴스를 다른 것으로 대체할 수 있다. 이때 readObject 가 만들어낸 인스턴스는 가비지 컬렉션의 대상이 된다.
 	 */
 	
-	private Object readResolve() {
-		// 기존에 생성된 인스턴스를 반환한다.
-		return INSTANCE;
-	}
+//	private Object readResolve() {
+//		// 기존에 생성된 인스턴스를 반환한다.
+//		return INSTANCE;
+//	}
 	
 	/* 
 	 * readResolve 를 인스턴스 통제 목적으로 사용한다면 객체 참조 타입 인스턴스 필드는 모두 transient 로 선언해야 한다.

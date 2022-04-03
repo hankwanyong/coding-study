@@ -1,4 +1,4 @@
-package effectivejava.chapter3.item13;
+package effectivejava.v2.chapter3.item13;
 
 public class PhoneNumberClone implements Cloneable{
 	private final short areaCode, prefix, lineNum;
