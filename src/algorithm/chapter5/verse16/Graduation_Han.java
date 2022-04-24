@@ -36,10 +36,162 @@ public class Graduation_Han {
         };
 
 
-        System.out.println("test1 : " + chgRet(test(ex1, subjectArr1, semesterArr1)));
-        System.out.println("test2 : " + chgRet(test(ex2, subjectArr2, semesterArr2)));
+//        boolean[] signUpSbjctArr = new boolean[4];
+//        for(boolean z : signUpSbjctArr) {
+//            System.out.println("zzz : " + z);
+//        }
+
+//        System.out.println("test1 : " + chgRet(test2(ex1, subjectArr1, semesterArr1)));
+        System.out.println("test2 : " + chgRet(test2(ex2, subjectArr2, semesterArr2)));
+
+        System.out.println((1 & 1<<0) );
+        System.out.println((11 & 1<<0) );
+        System.out.println((13 & 1<<0) );
+        System.out.println((12 & 1<<0) );
+        System.out.println((14 & 1<<0) );
+
 
     }
+
+    /**
+     * 비트마스크 변환
+     * @param param
+     * @return
+     */
+    public static int getBitmask(int[] param) {
+        int ret = 0;
+        for(int i : param) {
+            ret += 1<<i;
+        }
+        return ret;
+    }
+
+    /**
+     *
+     * @param ex            : 학교 수강 정보
+     * @param subjectArr    : 과목 정보
+     * @param semesterArr   : 학기 정보
+     * @return
+     */
+    static int test2(int[] ex, int[][] subjectArr, int[][] semesterArr){
+
+        int ret = 0;
+
+        int[] sbjctBm = new int[ex[0]];        // 과목 비트마스크
+        int[] smstrBm = new int[ex[2]];        // 학기 비트마스크
+        boolean[] signUpSbjctArr = new boolean[ex[0]];        // 수강한 과목
+
+
+        // 과목 설정
+        for(int index1=0; index1 < ex[0]; index1++) {
+            sbjctBm[index1] = getBitmask(subjectArr[index1]);
+        }
+
+        // 학기 설정
+        for(int index2=0; index2 < ex[2]; index2++) {
+            smstrBm[index2] = getBitmask(semesterArr[index2]);
+        }
+
+        // 학기 loop
+        for(int smstr : smstrBm) {
+
+            boolean signUpYn = false;       // 과목 수강 여부
+            List<Integer> curSignUpSbjct = new ArrayList<>();
+
+            // 과목 loop >> i:과목 index
+            for(int i=0; i<ex[0]; i++){
+                int sbjct = sbjctBm[i];
+                boolean signUpPsb = true;  // 수강 가능 여부
+
+                // 이 과목 포함하는 학기
+                int zzz = smstr & 1<<i;
+                if((smstr & 1<<i) > 0) {
+
+
+//                    if(sbjct != 0) {
+
+                        // 수강한 과목 loop >> j: 수강한 과목 index
+                        for(int j=0; j<ex[0]; j++ ) {
+                            boolean signUpSbjct = signUpSbjctArr[j];
+                            int 포함여부 = sbjct & 1<<j;
+
+                            if(signUpSbjct && i == j) {
+                                // j 수강하고 i과목과 같음
+                                signUpPsb = false;
+                            }else if(!signUpSbjct && i == j){
+                                // j 수강하지 않고 i과목과 같음
+
+                            }else if(signUpSbjct && i != j) {
+                                // j 수강하고 i과목과 다름
+
+                            }else {
+                                // j 수강하지 않고 i과목과 다름
+                                if((sbjct & 1<<j) > 0) signUpPsb = false;
+                            }
+
+                            if(!signUpPsb) break;
+                        }
+//                    }
+
+                }
+
+                if(signUpPsb) {
+                    signUpYn = true;        // 수강 했음 >> 학기 수 ++
+                    curSignUpSbjct.add(i);
+                }
+
+            }
+
+            if(signUpYn) {
+                ret++;      // 학기 수 ++
+
+                System.out.println("curSignUpSbjct : " + curSignUpSbjct.toString());
+
+                // 전체 수강한 과목 업데이트
+                for(Integer curSignUp : curSignUpSbjct) {
+                    signUpSbjctArr[curSignUp] = true;
+                }
+
+//                signUpLog(signUpSbjctArr);
+            }
+
+            if(signUpInt(signUpSbjctArr) == ex[1]) {
+                break;
+            }
+
+        }
+
+
+        return ret;
+
+    }
+
+    public static void signUpLog(boolean[] signUpSbjctArr) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i=0; i<signUpSbjctArr.length; i++) {
+            if(signUpSbjctArr[i]) {
+                if(i == 0) {
+                    sb.append(i);
+                }else {
+                    sb.append(", " + i);
+                }
+            }
+        }
+
+        System.out.println("수강한 과목 : " + sb.toString());
+    }
+
+    public static int signUpInt(boolean[] signUpSbjctArr) {
+        int ret = 0;
+        for (boolean b : signUpSbjctArr) {
+            if (b) {
+                ret++;
+            }
+        }
+        return ret;
+    }
+
 
     /**
      *
