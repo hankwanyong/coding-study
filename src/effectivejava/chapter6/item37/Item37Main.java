@@ -16,15 +16,16 @@ public class Item37Main {
 	public static void main(String[] args) {
 		
 		//정원에 심은 식물을 배열 하나로 관리하고 이들을 생애주기별로 묶어보자
-		//ordinal을 사용한 코드
+		//ordinal을 사용한 코드 -- 따라하지 말것
 		Plant[] garden = new Plant[0];
 		
 		Set<Plant>[] plantsByLifeCycle = (Set<Plant>[]) new Set[Plant.LifeCycle.values().length];
+		
 		for(int i = 0 ; i<plantsByLifeCycle.length;i++){
 			plantsByLifeCycle[i]  = new HashSet<>();
 		}
 		
-		for(Plant p : garden) {
+		for(Plant p : garden) {			
 			plantsByLifeCycle[p.lifeCycle.ordinal()].add(p);
 		}
 		
@@ -45,6 +46,7 @@ public class Item37Main {
 		//EnumMap을 사용한 코드
 		Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle2 = new EnumMap<>(Plant.LifeCycle.class);
 		for(Plant.LifeCycle lc : Plant.LifeCycle.values()) {
+			System.out.println("Plant.LifeCycle lc : " + lc);
 			plantsByLifeCycle2.put(lc, new HashSet<>());
 		}
 		
