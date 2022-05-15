@@ -20,6 +20,19 @@ public class Cristmas_Han {
         System.out.println("1-1 : " + test1(child1, goods1Arr));
         System.out.println("2-1 : " + test1(child2, goods2Arr));
 
+        /**
+         * 2번 문제 의미를 모르곘음.
+         * 2-2 경우
+         * 1,234
+         * 12,34
+         * 123,4
+         * 2,34
+         * 23,4
+         * 3,4
+         *
+         * >> 6가지 경우? 답은 4
+         */
+
     }
 
     /**
